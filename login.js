@@ -70,7 +70,7 @@ async function delayTime(ms) {
       await browser.close();
 
       // 用户之间添加随机延时
-      const delay = Math.floor(Math.random() * 3600) + 900; // 随机延时1秒到8秒之间
+      const delay = Math.floor(Math.random() * 360) + 90; // 随机延时1秒到8秒之间
       await delayTime(delay*1000);
     }
   }
