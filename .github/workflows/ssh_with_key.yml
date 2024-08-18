@@ -1,0 +1,23 @@
+name: SSH Login and Command Execution
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时执行一次
+
+jobs:
+  ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Execute SSH commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER[0] }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            echo "Running commands on remote server"
+            whoami
+            # 其他您想执行的命令
