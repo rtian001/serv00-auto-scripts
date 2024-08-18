@@ -1,1 +1,23 @@
-run
+name: SSH-Password
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时执行一次
+
+jobs:
+  ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Execute SSH Commands
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER[0] }}@${{ secrets.SSH_HOST }} << 'EOF'
+            echo "Running commands on remote server"
+            whoami
+            # 其他您想执行的命令
+          EOF
