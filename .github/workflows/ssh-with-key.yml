@@ -22,6 +22,6 @@ jobs:
           script: |
             echo "Running commands on remote server"
             whoami
-            ssh  -o StrictHostKeyChecking=no $username@$host
+            ssh  $username@$host
             ls -lh
             # 其他您想执行的命令
