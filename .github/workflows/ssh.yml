@@ -16,7 +16,7 @@ jobs:
 
       - name: Execute SSH Commands
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER[0] }}@${{ secrets.SSH_HOST }} << 'EOF'
+          sshpass -p "Vpn123123" ssh -o StrictHostKeyChecking=no rtian001@s1.ct8.pl << 'EOF'
             echo "Running commands on remote server"
             whoami
             # 其他您想执行的命令
