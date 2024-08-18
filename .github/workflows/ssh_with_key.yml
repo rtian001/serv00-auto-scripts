@@ -1,6 +1,8 @@
-name: SSH-with-KEY
+name: SSH-with-Password
 
 on:
+  workflow_dispatch:
+
   schedule:
     - cron: '0 * * * *'  # 每小时执行一次
 
@@ -11,13 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Execute SSH commands
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER[0] }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Execute SSH Commands
+        run: |
+          sshpass -p "Vpn123123" ssh -o StrictHostKeyChecking=no rtian001@s1.ct8.pl << 'EOF'
             echo "Running commands on remote server"
             whoami
             # 其他您想执行的命令
+          EOF
