@@ -1,4 +1,4 @@
-name: SSH Login and Command Execution
+name: SSH-with-KEY
 
 on:
   schedule:
