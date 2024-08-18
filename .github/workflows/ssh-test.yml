@@ -22,10 +22,11 @@ jobs:
           echo "$SSH_PRIVATE_KEY" | ssh-add - >~/.ssh/id_rsa  
 
           # 你可以在这里添加更多的SSH命令或脚本  
-          # 例如，ssh -o StrictHostKeyChecking=no user@hostname 'ls -la'  
+          # 例如，
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls -la'  
 
       env:  
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}  
 
       # 注意：出于安全考虑，上面的SSH命令是注释掉的。  
       # 你应该使用脚本来处理SSH连接和命令执行，  
